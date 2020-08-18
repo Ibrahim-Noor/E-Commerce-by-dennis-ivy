@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>E-Commerce</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+			<!-- Tabs Titles -->
+
+			<!-- Icon -->
+			<div class="fadeIn first">
+			<img src="{% static 'images/logo.png' %}" id="icon" alt="User Icon"/>
+			</div>
+			<div class="mx-5">
+                <h3>Login</h3>
+            </div>
+			<!-- Login Form -->
+			<form action="" method="POST">
+				{% csrf_token %}
+				<div class="fadeIn second" >
+					{{form.email}}
+				</div>
+				{% for error in form.email.errors  %}
+					<p style='color:red;'>{{error}}</p>
+				{% endfor %}
+				<div class="fadeIn third" >
+					{{form.password}}
+				</div>
+				{% for error in form.password.errors  %}
+					<p style='color:red;'>{{error}}</p>
+				{% endfor %}
+				{% for error in form.non_field_errors %}
+					<div style = "color: red;"><p>
+						{{error}}
+					</p></div>
+				{% endfor %}
+				<input type="submit" class="fadeIn fourth" value="Login">
+			</form>
+
+			<!-- Remind Passowrd -->
+			<div id="formFooter">
+                <p>New to the site? <a class="underlineHover" href="{% url 'register' %}">Sign Up</a></p>
+			    <a class="underlineHover" href="{% url 'reset_password' %}">Forgot Password?</a>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

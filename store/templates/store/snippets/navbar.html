@@ -1,0 +1,31 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+
+<div class="nav1">
+  <div class="logo">
+    <a href="{% url 'store' %}"><img src="{% static 'images/logo.png' %}" alt="" width='50px' height:'50px'></a>
+  </div>
+  <div class="navitems">
+    <ul id="MenuItems" class="my-auto animated slideInDown">
+      {% if request.user.is_authenticated %}
+        <li><a href="{% url 'logout' %}" class="btn btn-warning">Logout</a></li>
+      {% else %}
+        <li><a href="{% url 'register' %}" class="btn btn-warning" style="margin-right: 5px;">SignUp</a></li>
+        <li><a href="{% url 'login' %}" class="btn btn-warning">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <div class="inline-dis">
+    <a href="{% url 'cart' %}"><img id="cart-icon" src="{% static 'images/cart.png' %}" alt="cart"/><span id="cart-total" class="total_cart_items">{{cart_items}}</span></a>
+    <img
+      src="{% static 'images/menu.png' %}"
+      alt=""
+      width="30px"
+      class="menu-icon"
+      onclick="menutoggle()"/>
+  </div>
+  <script type='text/javascript' src="{% static 'js/navbar.js' %}"></script>
+</div>
